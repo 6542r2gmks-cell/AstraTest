@@ -1,0 +1,66 @@
+[
+  {
+    "id": "extraction",
+    "label": "Crude Oil Extraction"
+  },
+  {
+    "id": "desalter",
+    "label": "Crude Desalting"
+  },
+  {
+    "id": "distillation",
+    "label": "Atmospheric Distillation"
+  },
+  {
+    "id": "pump-swap",
+    "label": "Primary Pump Swap (Hot Standby)"
+  },
+  {
+    "id": "hydrotreating",
+    "label": "Hydrotreating (Sulfur Removal)"
+  },
+  {
+    "id": "alky",
+    "label": "HF Alkylation"
+  },
+  {
+    "id": "reformer",
+    "label": "Catalytic Reforming"
+  },
+  {
+    "id": "vac",
+    "label": "Vacuum Distillation"
+  },
+  {
+    "id": "coker",
+    "label": "Delayed Coking"
+  },
+  {
+    "id": "fcc",
+    "label": "Fluid Catalytic Cracking (FCC)"
+  },
+  {
+    "id": "pipe-xray",
+    "label": "Pipe X-Ray Maintenance"
+  },
+  {
+    "id": "gasoline",
+    "label": "Gasoline Blending & Certification"
+  },
+  {
+    "id": "jetfuel",
+    "label": "Jet Fuel Inspection & Certification"
+  },
+  {
+    "id": "ulsd",
+    "label": "ULSD Treatment & Additives"
+  },
+  {
+    "id": "logistics",
+    "label": "Product Logistics & Delivery"
+  },
+  {
+    "id": "sru",
+    "label": "Sulfur Recovery Unit (SRU)"
+  }
+]
