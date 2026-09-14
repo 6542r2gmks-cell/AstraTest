@@ -1,0 +1,536 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Great Refinery Run | Fueling Curiosity</title><meta name="description" content="Tap, drag, blend, and investigate your way through 16 refinery learning activities."><meta name="theme-color" content="#0d293b"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/css/site.css"><meta property="og:title" content="The Great Refinery Run"><meta property="og:description" content="Tap, drag, blend, and investigate your way through 16 refinery learning activities."><meta property="og:type" content="website"><link rel="stylesheet" href="assets/css/lesson-scenes.css"><link rel="stylesheet" href="assets/css/game.css"><script src="assets/vendor/matter-0.19.0.min.js" defer></script><script src="assets/js/runtime.js" defer></script><script src="assets/js/game-engine.js" defer></script><script src="assets/js/game-shell.js" defer></script><script src="assets/js/site.js" defer></script></head><body class="game-v2"><a class="skip-link" href="#game-container">Skip to content</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="index.html" aria-label="Fueling Curiosity home"><span class="brand-symbol" aria-hidden="true">F</span><span>FUELING<br>CURIOSITY<small>THE SCIENCE OF EVERYDAY</small></span></a><button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button><nav class="nav" id="site-nav" aria-label="Main navigation"><a href="index.html" >Explore</a><a href="game.html" aria-current="page" >Play</a><a href="educators.html" >For educators</a><a href="book.html" >The book</a></nav></div></header><div class="game-titlebar wrap"><div><p class="eyebrow">FUELING CURIOSITY / INTERACTIVE FIELD GUIDE</p><h1>The Great Refinery Run</h1></div><a href="educators.html">Teacher resources ↗</a></div><div class="wrap game-toolbar"><div class="lesson-context"><span id="lesson-index">START HERE</span><strong id="lesson-objective">From crude to consumer.</strong></div><div class="toolbar-actions"><button id="passport-jump" type="button">Passport <b id="mobile-count">0/16</b></button><button id="pause-open" type="button">Pause & help</button></div></div><div id="boot-error" class="wrap notice amber" hidden role="alert"><strong>The game could not start.</strong><p>Check that all v2 files were uploaded together, then reload the page.</p><button class="button" onclick="location.reload()">Try again</button></div><div class="wrap game-layout"><div class="stage-column"><main id="game-container">
+
+
+<div id="fun-fact-overlay" class="fun-fact-overlay" aria-live="polite">
+    <div id="fun-fact-label" class="fun-fact-label">Did You Know?</div>
+    <div id="fun-fact-emoji" class="fun-fact-emoji"></div>
+    <p id="fun-fact-text" class="fun-fact-text"></p>
+    <span id="fun-fact-counter" class="fun-fact-counter hidden"></span>
+    <div id="fun-fact-controls" class="fun-fact-controls hidden">
+        <button id="fun-fact-prev-btn" class="btn btn-secondary interactive-element" type="button" onclick="Game.previousFact()">Previous</button>
+        <button id="fun-fact-next-btn" class="btn interactive-element" type="button" onclick="Game.nextFact()">Next</button>
+        <button id="fun-fact-close-btn" class="btn btn-game interactive-element" type="button" onclick="Game.closeFactsBrowser()">Close</button>
+    </div>
+    <button type="button" id="fun-fact-tap" class="fun-fact-tap">Continue</button>
+</div>
+
+<section id="phase-0" class="screen active splash-screen v2-start" aria-labelledby="splash-title"><div class="start-copy"><p class="eyebrow">THE GREAT REFINERY RUN</p><h1 id="splash-title">Your first shift<br>starts here.</h1><p>Follow crude oil from the ground to a finished fuel. Tap, drag, blend, and test your way through the refinery.</p><div class="start-route" aria-label="Your journey"><span><b>01</b>Extract</span><span><b>02</b>Process</span><span><b>03</b>Test</span><span><b>04</b>Deliver</span></div><button id="start-run" class="btn btn-game interactive-element" onclick="Game.startOrResume()">Start the run <span aria-hidden="true">→</span></button><p class="start-save-note" id="start-save-note">Complete your first delivery to open the refinery map.</p><button class="start-facts" onclick="Game.openFactsBrowser()">Just the facts — explore without playing</button></div><div class="start-brief"><span class="brief-tag">YOUR MISSION</span><p class="brief-big">One product.<br>Many decisions.</p><div class="brief-product"><span aria-hidden="true">⛽</span><div><strong>Gasoline</strong><small>Blend to a target.</small></div></div><div class="brief-product"><span aria-hidden="true">✈</span><div><strong>Jet fuel</strong><small>Inspect before release.</small></div></div><div class="brief-product"><span aria-hidden="true">🚚</span><div><strong>Diesel</strong><small>Get the dose right.</small></div></div><p class="brief-note">Learn the process.<br>Then explore all 16 units.</p></div></section>
+
+
+
+<section id="phase-1" class="screen" aria-labelledby="phase1-title">
+
+  <h2 id="phase1-title">Phase 1: Extraction</h2>
+
+  <div class="extraction-scene" role="group" aria-label="Oil extraction cross-section showing pump jack pulling crude from underground reservoir">
+    
+    
+    <div class="ext-sky">
+      <div class="ext-sun">☀️</div>
+      <div class="ext-cloud ext-cloud--1">☁️</div>
+    </div>
+
+    
+    <div class="ext-surface">
+      <div id="pumpjack" class="ext-pumpjack interactive-element" role="button" tabindex="0" aria-label="Oil Pumpjack — tap to extract crude oil">
+        <div class="ext-pump-base"></div>
+        <div class="ext-pump-arm" id="pump-arm">
+          <div class="ext-pump-head"></div>
+          <div class="ext-pump-counterweight"></div>
+        </div>
+        <div class="ext-pump-motor"></div>
+      </div>
+    </div>
+
+    
+    <div class="ext-underground">
+      
+      <div class="ext-wellbore" id="wellbore">
+        <div class="ext-wellbore-pipe"></div>
+        
+      </div>
+
+      
+      <div class="ext-layer ext-layer--topsoil"></div>
+      <div class="ext-layer ext-layer--rock"></div>
+      <div class="ext-layer ext-layer--shale"></div>
+      <div class="ext-layer ext-layer--reservoir" id="oil-reservoir">
+        
+        <span class="ext-oil-dot" style="left:15%;top:30%">🟤</span>
+        <span class="ext-oil-dot" style="left:45%;top:50%">🟤</span>
+        <span class="ext-oil-dot" style="left:70%;top:25%">🟤</span>
+        <span class="ext-oil-dot" style="left:30%;top:65%">🟤</span>
+        <span class="ext-oil-dot" style="left:80%;top:55%">🟤</span>
+      </div>
+    </div>
+
+    
+    <div class="ext-surface-pipe" id="surface-pipe"></div>
+
+    <div class="ext-collection">
+      <div class="ext-tank-label">Storage Tank</div>
+      <div class="tank-container interactive-element" role="button" tabindex="0" aria-label="Crude oil storage tank filling up">
+        <div id="oil-level"></div>
+        </div>
+      <div class="ext-pipeline" id="ext-pipeline">
+        <div class="ext-pipeline-pipe"></div>
+        <div class="ext-pipeline-label">→ To Refinery</div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <p>Tap the pump jack, the tank, or the button to extract crude oil!</p>
+
+  <button id="pump-btn" class="btn interactive-element" aria-label="Pump oil to refinery button">Pump to Refinery! (0/5)</button>
+
+</section>
+
+
+<section id="phase-desalter" class="screen" aria-labelledby="desalter-title">
+    <h2 id="desalter-title">Phase 1b: The Desalter</h2>
+    <p>Crude oil has salty water in it! Zap the salt 🧂 and water 💧 before they escape the grid! But don't zap the oil ⚫️! </p>
+    
+    <div id="desalter-status" style="min-height: 24px; margin-bottom: 10px; font-weight: bold; color: var(--color-navy); transition: color 0.3s;">
+        Grid powering up...
+    </div>
+
+    <div id="desalter-container" class="cleaning-vat" style="transition: border-color 0.2s;"></div>
+    
+    <button id="to-tower-btn" class="btn btn-game interactive-element hidden" onclick="Game.goToDistillation()">To Distillation Tower!</button>
+    <button id="desalter-restart-btn" class="btn interactive-element hidden" onclick="Game.mapJump('desalter')">Restart Desalter</button>
+</section>
+
+
+
+<section id="phase-2" class="screen" aria-labelledby="phase2-title">
+    <h2 id="phase2-title">Phase 2: Distillation</h2>
+    <p>Inside the tower, crude oil gets heated and separates by weight! Choose a product path:</p>
+
+    <div class="tower-container" aria-label="Distillation tower">
+        <div class="tower-cap"></div>
+        <div class="tower-body">
+            <button class="btn tower-btn top interactive-element" onclick="Game.chooseProduct('lpg')">LPG 💨<br><small>(Top - Lightest)</small></button>
+            <button class="btn tower-btn top interactive-element" onclick="Game.chooseProduct('naphtha')">Naphtha 🧪</button>
+            <button class="btn tower-btn middle interactive-element" onclick="Game.chooseProduct('jetfuel')">Jet Fuel ✈️</button>
+            <button class="btn tower-btn bottom interactive-element" onclick="Game.chooseProduct('diesel')">Diesel 🚛</button>
+            <button class="btn tower-btn interactive-element" style="background:#4a5568; color:white;" onclick="Game.chooseProduct('resid')">Resid 🪨<br><small>(Bottom - Heaviest)</small></button>
+        </div>
+        <div class="tower-base"></div>
+    </div>
+</section>
+
+
+<section id="phase-3" class="screen" aria-labelledby="phase3-title">
+    <h2 id="phase3-title">Phase 3: Hydrotreating</h2>
+    <p id="cleaning-text">We need to clean the sulfur out!</p>
+    <div id="sulfur-container" class="cleaning-vat"></div>
+    <button id="to-processing-btn" class="btn btn-game interactive-element hidden" onclick="Game.startProcessing()">Send to Processing!</button>
+</section>
+
+
+<section id="phase-alky" class="screen">
+    <h2>HF Alkylation Unit</h2>
+    <p>Tap the 🫧 molecules in the emulsion layer to make Alkylate! <strong>Warning:</strong> Drag the dark tar (ASO) 🟤 to the Acid Regen box before acid purity drops below 80%!</p>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+        <span id="alky-purity" style="font-weight: bold; color: #2e7d32;">Acid Purity: 100%</span>
+        <span id="alky-progress" style="font-weight: bold; color: var(--color-navy);">Alkylate: 0/4</span>
+    </div>
+
+        <div id="alky-system" class="interactive-element">
+        <div id="alky-settler">
+            <div class="layer hc-layer">Hydrocarbon</div>
+            <div class="layer emulsion-layer">Acid/HC Emulsion</div>
+            <div class="layer acid-layer">Settled HF Acid</div>
+        </div>
+        
+        <div class="alky-pipe"></div>
+        
+        <div id="alky-regen" class="regen-box">🔥 Acid Regen</div>
+    </div>
+
+    
+    <button id="alky-done-btn" class="btn btn-game interactive-element hidden" onclick="Game.routeToGasoline()" style="margin-top: 15px;">To Gasoline Blender!</button>
+    <button id="alky-restart-btn" class="btn interactive-element hidden" onclick="Game.mapJump('alky')" style="margin-top: 15px;">Restart Alky</button>
+</section>
+
+
+
+<section id="phase-reformer" class="screen">
+    <h2>Catalytic Reformer</h2>
+    <p>Naphtha is low octane! 🔥 the furnace to heat the straight molecules, release Hydrogen, and reshape them into powerful Ring ⬡ molecules!</p>
+    <div id="reformer-container" class="fuel-box"></div>
+    <button id="reformer-done-btn" class="btn btn-game interactive-element hidden" onclick="Game.routeToGasoline()">To Gasoline Blender!</button>
+</section>
+
+
+<section id="phase-vac" class="screen">
+    <h2>Vacuum Tower</h2>
+    <p>Resid is too thick to distill normally! Remove the air pressure so the heavy oil boils at a lower temperature.</p>
+    <div id="vac-container" class="fuel-box"></div>
+
+    <div id="vac-choices" class="hidden tower-container" style="margin-top:20px;">
+        <h3>Vacuum Fractionator</h3>
+        <div class="tower-cap"></div>
+        <div class="tower-body">
+            <button class="btn tower-btn middle interactive-element" onclick="Game.chooseVacPath('vgo')">VGO (Vacuum Gas Oil)</button>
+            <button class="btn tower-btn bottom interactive-element" onclick="Game.chooseVacPath('vtb')">VTB (Vacuum Tower Bottoms)</button>
+        </div>
+        <div class="tower-base"></div>
+    </div>
+</section>
+
+<section id="phase-coker" class="screen">
+    <div id="coker-container"></div>
+</section>
+
+
+<section id="phase-coker-frac" class="screen" aria-labelledby="coker-frac-title">
+    <h2 id="coker-frac-title">Coker Fractionator</h2>
+    <p>The hot vapors from the drum separate into cracked products! Choose one to process:</p>
+    <div id="coker-frac-container"></div>
+</section>
+
+
+<section id="phase-fcc" class="screen">
+    <h2>Fluid Catalytic Cracking (FCC)</h2>
+    <p>VGO molecules 🟠 are too big to use as fuel! Tap them to CRACK them apart! Cracking causes coke buildup ⚫! Don't forget to <strong>regen</strong> your catalyst.</p>
+    <div id="fcc-container" class="fuel-box"></div>
+
+    <div id="fcc-frac" class="hidden tower-container" style="margin-top:20px;">
+        <h3>FCC Fractionator</h3>
+        <p>Cracked molecules are separated into cracked products! Choose one to process:</p>
+        <div class="tower-cap"></div>
+        <div class="tower-body">
+            <button class="btn tower-btn top interactive-element" onclick="Game.chooseProduct('lpg')">LPG 💨</button>
+            <button class="btn tower-btn middle interactive-element" onclick="Game.chooseProduct('gasoline')">Gasoline 🚗</button>
+            <button class="btn tower-btn bottom interactive-element" onclick="Game.chooseProduct('diesel')">FCC Diesel 🚛</button>
+            <div class="asphalt-label" style="background:#2d3748;">Slurry goes to sales!🛢️</div>
+        </div>
+        <div class="tower-base"></div>
+    </div>
+</section>
+
+
+<section id="phase-4" class="screen" aria-labelledby="phase4-title">
+    <h2 id="phase4-title">Phase 4: Blending &amp; Processing</h2>
+    <div id="minigame-container" aria-live="polite"></div>
+    <div id="lab-check" class="hidden">
+        <button id="test-btn" class="btn btn-game interactive-element"></button>
+        <div class="progress-bar-container hidden" id="test-progress-container">
+            <div id="test-progress"></div>
+        </div>
+        <p id="test-result" class="hidden" style="color: #2e7d32; font-weight: bold; font-size: 1.2rem;">PASS! ✅</p>
+    </div>
+</section>
+
+
+<section id="phase-5" class="screen" aria-labelledby="phase5-title">
+    <h2 id="phase5-title">Phase 5: Logistics</h2>
+    <p>Your product is ready! How do you want to deliver it?</p>
+    <div id="product-display" class="product-icon" aria-hidden="true"></div>
+
+    <div class="transport-options">
+        <button class="btn transport-btn interactive-element" onclick="Game.chooseLogistics('truck')">
+            <span class="transport-emoji">🚛</span>
+            <span class="transport-label">Tanker Truck</span>
+            <span class="transport-detail">~9,000 gallons</span>
+        </button>
+        <button class="btn transport-btn interactive-element" onclick="Game.chooseLogistics('railcar')">
+            <span class="transport-emoji">🚂</span>
+            <span class="transport-label">Rail Car</span>
+            <span class="transport-detail">~ 3 trucks/rail car</span>
+        </button>
+        <button class="btn transport-btn interactive-element" onclick="Game.chooseLogistics('barge')">
+            <span class="transport-emoji">🛳️</span>
+            <span class="transport-label">Barge</span>
+            <span class="transport-detail">= 100 trucks</span>
+        </button>
+        <button class="btn transport-btn interactive-element" onclick="Game.chooseLogistics('ship')">
+            <span class="transport-emoji">🚢</span>
+            <span class="transport-label">Ocean Tanker</span>
+            <span class="transport-detail">10+ million gallons</span>
+        </button>
+        <button class="btn transport-btn transport-btn--full interactive-element" onclick="Game.chooseLogistics('pipeline')">
+            <span class="transport-emoji">🚰</span>
+            <span class="transport-label">Pipeline</span>
+            <span class="transport-detail">Millions of gallons/day &middot; Lowest cost per gallon</span>
+        </button>
+    </div>
+</section>
+
+
+<section id="phase-transport" class="screen" aria-labelledby="transport-anim-title">
+    <h2 id="transport-anim-title">Delivering Your Product!</h2>
+    <div id="transport-scene" class="transport-scene">
+        <span id="transport-vehicle" class="transport-vehicle"></span>
+    </div>
+    <p id="transport-anim-label" class="transport-anim-label"></p>
+</section>
+
+
+<section id="finale" class="screen" aria-labelledby="finale-title">
+    <h2 id="finale-title">Delivery complete. Keep your curiosity moving.</h2>
+    <p id="finale-message" class="finale-message"></p>
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+    <div class="finale-actions">
+        <button class="btn interactive-element" onclick="Game.resetGame()">Play Again</button>
+        <a href="index.html" class="btn btn-secondary interactive-element" style="text-decoration: none;">Back to Home</a>
+    </div>
+</section>
+
+
+<section id="phase-pump-swap" class="screen pump-swap-screen" aria-labelledby="pump-swap-title">
+    <h2 id="pump-swap-title">Critical Alert: Pump Vibration Rising</h2>
+    <div class="pump-swap-topbar">
+        <p class="pump-swap-intro">🟢 Open Pump B suction, ▶️ start Pump B, 🟢 open Pump B discharge, then ⛔ isolate Pump A.</p>
+        <button id="pump-procedure-btn" class="btn btn-secondary interactive-element pump-procedure-btn" onclick="Game.showPumpProcedurePopup()">
+            Procedure
+        </button>
+    </div>
+
+    <div class="pump-status-strip">
+        <div class="pump-status-card">
+            <span class="pump-status-label">Feed flow</span>
+            <span id="pump-flow-status" class="pump-flow-status">FLOW STABLE</span>
+            <div class="pump-flow-meter" aria-hidden="true">
+                <div id="pump-flow-bar" class="pump-flow-bar"></div>
+            </div>
+        </div>
+        <div class="pump-status-card pump-status-card--vibration">
+            <span class="pump-status-label">Pump A vibration</span>
+            <div class="pump-vibration-track">
+                <div id="pump-a-vib-bar" class="pump-vibration-fill"></div>
+            </div>
+            <strong id="pump-a-vib-text">18%</strong>
+        </div>
+        <div class="pump-status-card">
+            <span class="pump-status-label">Standby</span>
+            <strong id="pump-b-state-text">Ready but isolated</strong>
+        </div>
+    </div>
+
+    <div id="pump-skid" class="pump-skid pump-skid--compact" aria-label="Twin feed pumps with shared suction and discharge headers">
+        <div class="pump-manifold pump-manifold--discharge">
+            <span class="pump-manifold-label">To Fractionator</span>
+            <div id="pump-header-discharge-line" class="pump-flow-line pump-flow-line--header" aria-hidden="true"></div>
+        </div>
+
+        <div class="pump-train-grid">
+            <article id="pump-a-container" class="pump-train pump-train--primary pump-train--compact" aria-labelledby="pump-a-title">
+                <div class="pump-train-topline">
+                    <h3 id="pump-a-title">Pump A</h3>
+                    <span id="pump-a-badge" class="pump-train-badge pump-train-badge--alarm">Primary online</span>
+                </div>
+                <div class="pump-train-role">Primary</div>
+
+                <div class="pump-train-visual pump-train-visual--compact">
+                    <div class="pump-component-row pump-component-row--discharge">
+                        <div id="pump-a-discharge-line" class="pump-flow-line pump-flow-line--vertical" aria-hidden="true"></div>
+                        <div class="pump-component-tag">Discharge Valve</div>
+                        <button id="btn-a-discharge" class="pump-toggle pump-toggle--switch interactive-element" onclick="Game.togglePumpComponent('A', 'discharge')" aria-pressed="true">
+                            <span class="pump-toggle-light" aria-hidden="true"></span>
+                            <span id="pump-a-discharge-state" class="pump-toggle-state">Open</span>
+                        </button>
+                    </div>
+
+                    <div class="pump-component-row pump-component-row--motor">
+                        <div id="pump-a-pump-body" class="pump-body pump-body--compact">
+                            <div class="pump-body-shell">
+                                <div class="pump-volute"></div>
+                                <div class="pump-shaft"></div>
+                                <div class="pump-motor-shell"></div>
+                                <div class="pump-baseplate"></div>
+                            </div>
+                            <div class="pump-body-caption">Vibrating pump</div>
+                        </div>
+                        <button id="btn-a-motor" class="pump-toggle pump-toggle--switch interactive-element" onclick="Game.togglePumpComponent('A', 'motor')" aria-pressed="true">
+                            <span class="pump-toggle-light" aria-hidden="true"></span>
+                            <span class="pump-toggle-copy">
+                                <span class="pump-toggle-label">Motor</span>
+                                <span id="pump-a-motor-state" class="pump-toggle-state">Running</span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="pump-component-row pump-component-row--suction">
+                        <div id="pump-a-suction-line" class="pump-flow-line pump-flow-line--vertical" aria-hidden="true"></div>
+                        <div class="pump-component-tag">Suction Valve</div>
+                        <button id="btn-a-suction" class="pump-toggle pump-toggle--switch interactive-element" onclick="Game.togglePumpComponent('A', 'suction')" aria-pressed="true">
+                            <span class="pump-toggle-light" aria-hidden="true"></span>
+                            <span id="pump-a-suction-state" class="pump-toggle-state">Open</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article id="pump-b-container" class="pump-train pump-train--standby pump-train--compact" aria-labelledby="pump-b-title">
+                <div class="pump-train-topline">
+                    <h3 id="pump-b-title">Pump B</h3>
+                    <span id="pump-b-badge" class="pump-train-badge">Standby isolated</span>
+                </div>
+                <div class="pump-train-role">Standby</div>
+
+                <div class="pump-train-visual pump-train-visual--compact">
+                    <div class="pump-component-row pump-component-row--discharge">
+                        <div id="pump-b-discharge-line" class="pump-flow-line pump-flow-line--vertical" aria-hidden="true"></div>
+                        <div class="pump-component-tag">Discharge Valve</div>
+                        <button id="btn-b-discharge" class="pump-toggle pump-toggle--switch interactive-element" onclick="Game.togglePumpComponent('B', 'discharge')" aria-pressed="false">
+                            <span class="pump-toggle-light" aria-hidden="true"></span>
+                            <span id="pump-b-discharge-state" class="pump-toggle-state">Closed</span>
+                        </button>
+                    </div>
+
+                    <div class="pump-component-row pump-component-row--motor">
+                        <div id="pump-b-pump-body" class="pump-body pump-body--compact">
+                            <div class="pump-body-shell">
+                                <div class="pump-volute"></div>
+                                <div class="pump-shaft"></div>
+                                <div class="pump-motor-shell"></div>
+                                <div class="pump-baseplate"></div>
+                            </div>
+                            <div class="pump-body-caption">Standby pump</div>
+                        </div>
+                        <button id="btn-b-motor" class="pump-toggle pump-toggle--switch interactive-element" onclick="Game.togglePumpComponent('B', 'motor')" aria-pressed="false">
+                            <span class="pump-toggle-light" aria-hidden="true"></span>
+                            <span class="pump-toggle-copy">
+                                <span class="pump-toggle-label">Motor</span>
+                                <span id="pump-b-motor-state" class="pump-toggle-state">Stopped</span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="pump-component-row pump-component-row--suction">
+                        <div id="pump-b-suction-line" class="pump-flow-line pump-flow-line--vertical" aria-hidden="true"></div>
+                        <div class="pump-component-tag">Suction Valve</div>
+                        <button id="btn-b-suction" class="pump-toggle pump-toggle--switch interactive-element" onclick="Game.togglePumpComponent('B', 'suction')" aria-pressed="false">
+                            <span class="pump-toggle-light" aria-hidden="true"></span>
+                            <span id="pump-b-suction-state" class="pump-toggle-state">Closed</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="pump-manifold pump-manifold--suction">
+            <span class="pump-manifold-label">From Feed Drum</span>
+            <div id="pump-header-suction-line" class="pump-flow-line pump-flow-line--header" aria-hidden="true"></div>
+        </div>
+    </div>
+
+    <div id="pump-feedback-panel" class="pump-feedback-panel" role="status" aria-live="polite">
+        <strong id="pump-feedback-title" class="pump-feedback-title">Control Room</strong>
+        <span id="pump-feedback-body" class="pump-feedback-body">Awaiting operator action.</span>
+    </div>
+
+    <button id="pump-retry-btn" class="btn btn-primary interactive-element hidden" onclick="Game.startPumpSwap({ skipShowPhase: true, product: 'jetfuel', nextPhase: '3' })">
+        Retry Swap
+    </button>
+
+    <div id="pump-procedure-overlay" class="pump-procedure-overlay" role="dialog" aria-modal="true" aria-labelledby="pump-procedure-title">
+        <div class="pump-procedure-dialog">
+            <h3 id="pump-procedure-title">Game sequence: pump swap</h3><p class="simulation-note">A simplified learning activity, not a field operating or maintenance procedure.</p>
+            <ol class="pump-procedure-list">
+                <li><strong>Open Spare Suction:</strong> Flood the spare pump with liquid to protect the mechanical seals.</li>
+                <li><strong>Start Spare Motor:</strong> Spin up the spare pump against its closed discharge valve.</li>
+                <li><strong>Open Spare Discharge:</strong> Establish forward flow through the spare pump.</li>
+                <li><strong>Close Primary Discharge:</strong> Pinch off the bad pump to prevent fluid from slamming backward.</li>
+                <li><strong>Stop Primary Motor:</strong> Shut down the vibrating equipment.</li>
+                <li><strong>Close Primary Suction:</strong> Complete the simulated valve sequence. Real maintenance requires the full site isolation procedure.</li>
+            </ol>
+            <button class="btn interactive-element pump-procedure-close" onclick="Game.closePumpProcedurePopup()">Acknowledge</button>
+        </div>
+    </div>
+</section>
+
+
+<section id="phase-pipe-xray" class="screen" aria-labelledby="pipe-xray-title">
+    <h2 id="pipe-xray-title">Pipe X-Ray Maintenance</h2>
+    <p>Incoming Diesel pipe integrity compromised! Scan for thin spots, tap to mark them, then switch to the clamp tool to fix them!</p>
+    
+    <div style="background: #f8fafc; padding: 10px; border-radius: 8px; margin-bottom: 20px; text-align: center; border: 2px solid #cbd5e1; width: 100%; max-width: 400px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+            <strong style="color: #1a365d;">Time to Failure: <span id="pxray-timer" style="color: #c53030;">45.0s</span></strong>
+            <strong style="color: #1a365d;">Clamps: <span id="pxray-score">0/3</span></strong>
+        </div>
+        <div style="width: 100%; background: #e2e8f0; height: 10px; border-radius: 5px; overflow: hidden;">
+            <div id="pxray-time-bar" style="width: 100%; height: 100%; background: #48bb78; transition: width 0.1s linear, background 0.3s ease;"></div>
+        </div>
+    </div>
+
+    
+    <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+        <button id="tool-scanner" class="btn tool-btn active interactive-element" onclick="Game.setXrayTool('scanner')">
+            <span style="font-size: 1.5rem;">🔍</span> X-Ray Scanner
+        </button>
+        <button id="tool-clamp" class="btn tool-btn interactive-element" onclick="Game.setXrayTool('clamp')" style="background: var(--color-gray-600);">
+            <span style="font-size: 1.5rem;">🔧</span> Pipe Clamp
+        </button>
+    </div>
+
+    
+    <div id="pipe-xray-wrapper" class="interactive-element" style="position: relative; width: 100%; max-width: 500px; height: 200px; touch-action: none; overflow: hidden; border-radius: 8px; box-shadow: var(--shadow-elevated);">
+        
+        
+        <div class="pipe-xray-container">
+            <div class="pipe-flange left"></div>
+            <div class="pipe-body-inner">
+                 <div class="xray-pipe horizontal"></div>
+                 <div class="xray-pipe horizontal"></div>
+                 <div class="xray-pipe horizontal"></div>
+            </div>
+            <div class="pipe-flange right"></div>
+        </div>
+        
+        
+        <div id="pipe-xray-playarea" style="position: absolute; inset: 0; z-index: 10;">
+            
+            
+            <div id="xray-scanner-lens" class="xray-scanner" style="display: none;"></div>
+        </div>
+    </div>
+
+    <button id="pxray-restart-btn" class="btn interactive-element hidden" onclick="Game.startPipeXray({ skipShowPhase: true, product: 'diesel', nextPhase: '3' })" style="margin-top: 25px;">Restart Maintenance</button>
+</section>
+
+
+<section id="phase-sru" class="screen" aria-label="Sulfur Recovery Unit">
+    <div id="sru-root" aria-live="polite"></div>
+</section>
+
+</main><section id="alternative-controls" class="alternative-controls" hidden aria-label="Alternative activity controls"></section><section class="next-mission" id="next-mission" hidden><p class="eyebrow">WHERE WILL YOUR CURIOSITY GO NEXT?</p><h2 id="next-title"></h2><p id="next-description"></p><button class="button teal" id="next-play">Explore this unit</button></section><div class="game-caption"><span id="lesson-hint">One delivery opens the map. All 16 units unlock your Explorer certificate.</span><a href="report-bug.html">Need help?</a></div></div><aside class="passport" id="passport" aria-labelledby="passport-title"><div class="passport-top"><p class="eyebrow">YOUR EXPLORER PASSPORT</p><h2 id="passport-title">Make your mark.</h2><div class="passport-progress"><strong id="passport-count">0 <span>/ 16</span></strong><span>units completed</span></div><progress id="passport-progress" max="16" value="0" aria-label="Units completed"></progress><p id="passport-note">The map opens after your first delivery.</p></div><div id="passport-units" class="passport-units"></div><a id="certificate-link" class="button teal" href="certificate.html" hidden>Open Explorer certificate</a><div class="passport-bottom"><p class="save-status" id="save-status" role="status">Progress stays on this browser.</p><button id="export-progress">Save a progress copy</button><label class="restore-label" for="import-progress">Restore a progress copy<input type="file" accept=".json,application/json" id="import-progress" class="sr-only"></label><button id="new-run">Start a new delivery</button><button id="clear-progress">Clear v2 progress</button></div></aside></div><div id="game-map" class="hidden">
+    <h3 style="margin-top:0;">Refinery Control Map 🗺️</h3>
+    <div id="v804-tracker" class="v804-tracker">
+        <span class="v804-label">🏅 V-804 Certification</span>
+        <div class="v804-bar-row">
+            <progress id="v804-progress-bar" value="0" max="16"></progress>
+            <strong id="v804-count">0 / 16</strong>
+        </div>
+    </div>
+    
+    
+    <p style="font-size:0.85rem;color:#555;margin:4px 0 8px;">Tap a unit to jump. Green = certified ✅</p>
+    <div class="map-grid">
+        <button data-unit="extraction" onclick="Game.mapJump('1')">Extraction</button>
+        <button data-unit="desalter" onclick="Game.mapJump('desalter')">Desalter</button>
+        <button data-unit="distillation" onclick="Game.mapJump('2')">Distillation</button>
+        <button data-unit="pump-swap" onclick="Game.mapJump('pump-swap', 'jetfuel')">Pump Swap</button>
+        <button data-unit="hydrotreating" onclick="Game.mapJump('3', 'lpg')">Hydrotreating</button>
+        <button data-unit="alky" onclick="Game.mapJump('alky')">HF Alky</button>
+        <button data-unit="reformer" onclick="Game.mapJump('reformer')">Reformer</button>
+        <button data-unit="vac" onclick="Game.mapJump('vac')">Vacuum Tower</button>
+        <button data-unit="coker" onclick="Game.mapJump('coker')">Coker Unit</button>
+        <button data-unit="fcc" onclick="Game.mapJump('fcc')">FCC Unit</button>
+        <button data-unit="pipe-xray" onclick="Game.mapJump('pipe-xray', 'diesel')">Pipe X-Ray</button>
+        <button data-unit="gasoline" id="map-gasoline" onclick="Game.mapJump('4', 'gasoline')">⛽ Gasoline</button>
+        <button data-unit="jetfuel" id="map-jetfuel" onclick="Game.mapJump('4', 'jetfuel')">✈️ Jet Fuel</button>
+        <button data-unit="ulsd" id="map-ulsd" onclick="Game.mapJump('4', 'diesel')">🛢️ ULSD</button>
+        <button data-unit="logistics" onclick="Game.mapJump('5', 'gasoline')">Logistics</button>
+        <button data-unit="sru" onclick="Game.mapJump('sru')">Sulfur Recovery</button>
+    </div>
+<div id="v804-form" class="hidden"><button id="v804-print-btn">Open certificate</button></div></div>
+<dialog id="pause-dialog" class="game-dialog"><div class="dialog-kicker">TAKE A BREATHER</div><h2>Your refinery<br>can wait.</h2><p id="help-copy">Game time is paused. Resume when you are ready.</p><div class="help-controls"><span><b>Tap</b> Act or select</span><span><b>Hold</b> Dose continuously</span><span><b>Drag</b> Move to a destination</span></div><p class="muted">Completed units are saved on this browser. Unfinished activities restart at their checkpoint when you leave.</p><div class="button-row"><button class="button teal" id="resume-game">Resume play</button><button class="button secondary" id="return-start">Return to start</button></div><a class="text-link" href="teacher-guide.html" target="_blank" rel="noopener">Open the field guide ↗</a></dialog>
+<dialog id="confirm-dialog" class="game-dialog"><p class="eyebrow">YOUR PROGRESS</p><h2 id="confirm-title">Are you sure?</h2><p id="confirm-copy"></p><div class="button-row"><button id="confirm-yes" class="button">Continue</button><button id="confirm-no" class="button secondary">Cancel</button></div></dialog><div id="game-toast" role="status" aria-live="polite"></div><noscript><div class="wrap notice">Enable JavaScript to play. The <a href="teacher-guide.html">teacher guide</a> and <a href="downloads/fueling-curiosity-stem-activity-pack.pdf">activity PDF</a> work without JavaScript.</div></noscript><footer class="game-footer wrap"><span>© 2026 Taylor Bloomquist · <span id="build-version">2.0.0-rc.2</span></span><div><a href="privacy.html">Privacy & progress</a><a href="release-notes.html">Release notes</a><a href="index.html">Home</a></div></footer></body></html>
